@@ -12,7 +12,7 @@ const NoteForm = ({ addNote }) => {
         title: title,
         body: content,
         archived: false,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
       };
       addNote(newNote);
       setTitle('');
