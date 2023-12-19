@@ -15,7 +15,7 @@ ul{
 }
 
 .note-list{
-  max-width: 228px;
+  max-width: 259px;
   flex: 0 0 100%;
   height: 250px;
   background-color: #f8f9fa;
@@ -42,6 +42,8 @@ ul{
 
 .isi{
   color: rgb(83, 83, 83);
+  font-size: 12px;
+  text-justify: inter-word;
 }
 
 .isi::first-letter{
@@ -54,7 +56,7 @@ ul{
 }
 
 .btn{
-  max-width: 196px;
+  max-width: 225px;
   width: 100%;
   display: flex;
   gap: 8px;

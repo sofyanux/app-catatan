@@ -1,5 +1,6 @@
 import React from 'react';
 import './NoteList.css'
+import { showFormattedDate } from '../../utils/data';
 
 const NoteList = ({ notes, archivedNotes, deleteNote, archiveNote, restoreNote }) => {
 
@@ -12,8 +13,8 @@ const NoteList = ({ notes, archivedNotes, deleteNote, archiveNote, restoreNote }
             {notes.map((note) => (
               <div className="note-list" key={note.id}>
                 <strong className="judul">{note.title}</strong>
-                <p className="tanggal">{note.date}</p>
-                <p className="isi">{note.content}</p>
+                <p className="tanggal">{showFormattedDate(note.createdAt)}</p>
+                <p className="isi">{note.body}</p>
                 <div className="btn">
                   <button className="btn-del" onClick={() => deleteNote(note.id)}>Hapus</button>
                   <button className="btn-restore" onClick={() => archiveNote(note.id)}>Arsipkan</button>
@@ -34,8 +35,8 @@ const NoteList = ({ notes, archivedNotes, deleteNote, archiveNote, restoreNote }
               <div className="note-list" key={note.id}>
                 <div>
                   <strong className="judul">{note.title}</strong>
-                  <p className="tanggal">{note.date}</p>
-                  <p className="isi">{note.content}</p>
+                  <p className="tanggal">{showFormattedDate(note.createdAt)}</p>
+                  <p className="isi">{note.body}</p>
                 </div>
                 <div className="btn">
                   <button className="btn-del" onClick={() => deleteNote(note.id)}>Hapus</button>

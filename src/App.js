@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import NoteForm from './components/NoteForm/NoteForm';
 import NoteList from './components/NoteList/NoteList';
+import { dummyNotes } from './utils/data';
 import './App.css';
 
 const App = () => {
-  const initialNotes = JSON.parse(localStorage.getItem('notes')) || [];
+  const initialNotes = JSON.parse(localStorage.getItem('notes')) || dummyNotes;  // Gunakan dummyNotes sebagai nilai default
   const initialArchivedNotes = JSON.parse(localStorage.getItem('archivedNotes')) || [];
 
   const [notes, setNotes] = useState(initialNotes);
@@ -43,6 +44,7 @@ const App = () => {
     setArchivedNotes([...archivedNotes, noteToArchive]);
     const updatedNotes = notes.filter((note) => note.id !== id);
     setNotes(updatedNotes);
+    noteToArchive.archived = true;
   };
 
   const restoreNote = (id) => {
@@ -74,16 +76,7 @@ const App = () => {
       }
 
       if ((!storedNotes || storedNotes.length === 0) && (!storedArchivedNotes || storedArchivedNotes.length === 0) && !dummyNotesAdded) {
-        let nextId = 1;
 
-        const dummyNotes = [
-          { id: String(nextId++), title: 'Ayam Goreng', content: 'Ayam Goreng paling enak bagian dada dan paha.', date: 'Senin, 4 Desember 2023' },
-          { id: String(nextId++), title: 'Ayam Bakar Madu', content: 'Ayam bakar madu memiliki cita rasa yang unik dan sangat nikmat jika dimakan masih hangat.', date: 'Selasa, 5 Desember 2023' },
-          { id: String(nextId++), title: 'Sate Ayam Madura', content: 'Tesate satenya dekkk.', date: 'Rabu, 6 Desember 2023' },
-          { id: String(nextId++), title: 'Kambing Guling', content: 'Kasian kambingnya diguling-guling.', date: 'Kamis, 7 Desember 2023' },
-          { id: String(nextId++), title: 'Rendang', content: 'Cita rasa yang sungguh menggugah selera.', date: 'Jumat, 8 Desember 2023' },
-        ];
-        
         const filteredDummyNotes = dummyNotes.filter(dummyNote => !notes.some(note => note.id === dummyNote.id));
 
         setNotes(prevNotes => [...prevNotes, ...filteredDummyNotes]);

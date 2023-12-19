@@ -10,17 +10,14 @@ const NoteForm = ({ addNote }) => {
       const newNote = {
         id: Date.now().toString(),
         title: title,
-        content: content,
-        date: new Date().toLocaleDateString('id-ID', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        }),
+        body: content,
+        archived: false,
+        createdAt: new Date(),
       };
       addNote(newNote);
       setTitle('');
       setContent('');
+      console.log('Catatan Baru:', newNote);
     } else {
       alert('Judul dan isi catatan tidak boleh kosong!');
     }
