@@ -44,6 +44,8 @@ ul{
   color: rgb(83, 83, 83);
   font-size: 12px;
   text-justify: inter-word;
+  word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .isi::first-letter{
