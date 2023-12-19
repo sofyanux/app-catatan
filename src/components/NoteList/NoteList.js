@@ -2,6 +2,7 @@ import React from 'react';
 import './NoteList.css'
 
 const NoteList = ({ notes, archivedNotes, deleteNote, archiveNote, restoreNote }) => {
+
   return (
     <div className="container-note">
       <div>
@@ -15,13 +16,13 @@ const NoteList = ({ notes, archivedNotes, deleteNote, archiveNote, restoreNote }
                 <p className="isi">{note.content}</p>
                 <div className="btn">
                   <button className="btn-del" onClick={() => deleteNote(note.id)}>Hapus</button>
-                  <button className="btn-archive" onClick={() => archiveNote(note.id)}>Arsipkan</button>
+                  <button className="btn-restore" onClick={() => archiveNote(note.id)}>Arsipkan</button>
                 </div>
               </div>
             ))}
           </ul>
         ) : (
-          <p>Tidak ada catatan aktif.</p>
+          <p className='info'>Tidak ada catatan aktif.</p>
         )}
       </div>
 
@@ -44,7 +45,7 @@ const NoteList = ({ notes, archivedNotes, deleteNote, archiveNote, restoreNote }
             ))}
           </ul>
         ) : (
-          <p>Tidak ada catatan dalam arsip.</p>
+          <p className='info'>Tidak ada catatan dalam arsip.</p>
         )}
       </div>
     </div>

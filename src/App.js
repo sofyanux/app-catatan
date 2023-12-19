@@ -20,24 +20,18 @@ const App = () => {
     localStorage.setItem('archivedNotes', JSON.stringify(archivedNotes));
   }, [archivedNotes]);
 
-  // const addNote = (note) => {
-  //   setNotes([...notes, note]);
-  // };
-
   const addNote = (note) => {
     setNotes((prevNotes) => [...prevNotes, { ...note, id: String(Date.now()) }]);
   };
 
   const deleteNote = (id) => {
     const isDummyNote = notes.find((note) => note.id === id) !== undefined;
-
     const updatedNotes = notes.filter((note) => note.id !== id);
     const updatedArchivedNotes = archivedNotes.filter((note) => note.id !== id);
 
     setNotes(updatedNotes);
     setArchivedNotes(updatedArchivedNotes);
 
-    // Hapus catatan dari local storage hanya jika bukan catatan dummy
     if (!isDummyNote) {
       localStorage.setItem('notes', JSON.stringify(updatedNotes));
       localStorage.setItem('archivedNotes', JSON.stringify(updatedArchivedNotes));
@@ -59,10 +53,13 @@ const App = () => {
 
   const searchNotes = (query) => {
     setSearchQuery(query);
-    // Filter catatan berdasarkan judul dan update searchResults
-    const filteredNotes = notes.filter((note) =>
+
+    const allNotes = [...notes, ...archivedNotes];
+
+    const filteredNotes = allNotes.filter((note) =>
       note.title.toLowerCase().includes(query.toLowerCase())
     );
+
     setSearchResults(filteredNotes);
   };
 
@@ -73,11 +70,11 @@ const App = () => {
       const dummyNotesAdded = localStorage.getItem('dummyNotesAdded');
 
       if ((!storedNotes || storedNotes.length === 0) && (!storedArchivedNotes || storedArchivedNotes.length === 0)) {
-      localStorage.removeItem('dummyNotesAdded');
-    }
+        localStorage.removeItem('dummyNotesAdded');
+      }
 
       if ((!storedNotes || storedNotes.length === 0) && (!storedArchivedNotes || storedArchivedNotes.length === 0) && !dummyNotesAdded) {
-        let nextId = 1; // Initialize the ID for dummy notes
+        let nextId = 1;
 
         const dummyNotes = [
           { id: String(nextId++), title: 'Ayam Goreng', content: 'Ayam Goreng paling enak bagian dada dan paha.', date: 'Senin, 4 Desember 2023' },
@@ -96,8 +93,7 @@ const App = () => {
     };
 
     addDummyNotesIfNeeded();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); 
+  }, [notes]); 
 
   return (
     <div className="container">

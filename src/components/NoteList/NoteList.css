@@ -1,6 +1,5 @@
 .container-note{
   width: 100%;
-  background-color: aquamarine;
   padding: 20px;
   box-sizing: border-box;
   display: flex;
@@ -16,27 +15,42 @@ ul{
 }
 
 .note-list{
-  flex: 0 0 228px;
+  max-width: 228px;
+  flex: 0 0 100%;
   height: 250px;
-  background-color: aqua;
+  background-color: #f8f9fa;
+  border: 1px solid #e7e7e7;
   box-sizing: border-box;
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   position: relative;
 }
 
 .judul{
+  box-sizing: border-box;
   font-size: 18px;
   text-transform: capitalize;
+  word-wrap: break-word;
+  color: darkblue;
 }
 
 .tanggal{
   font-size: 12px;
-  margin-top: 2px;
+  margin-top: 4px;
+  color: cornflowerblue;
 }
 
 .isi{
-  text-transform: initial;
+  color: rgb(83, 83, 83);
+}
+
+.isi::first-letter{
+  text-transform: capitalize;
+}
+
+.info{
+  font-size: 14px;
+  color: grey;
 }
 
 .btn{
@@ -54,31 +68,17 @@ ul{
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
   padding: 5px;
-  background-color: #db6c6c;
-  color: #fff;
-  border: none;
+  color: #d8737d;
+  border: 1px solid #d8737d;
+  background-color: transparent;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .btn-del:hover {
-  background-color: #2980b9;
-}
-
-.btn-archive {
-  width: 50%;
-  box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
-  padding: 5px;
-  background-color: #db6c6c;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-archive:hover {
-  background-color: #2980b9;
+  color: #c42636;
+  border-color: #c42636;
 }
 
 .btn-restore {
@@ -86,13 +86,19 @@ ul{
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
   padding: 5px;
-  background-color: #db6c6c;
-  color: #fff;
-  border: none;
+  color: #fad25b;
+  border: 1px solid #fad25b;
+  background-color: transparent;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .btn-restore:hover {
-  background-color: #2980b9;
+  color: #e7af05;
+  border-color: #e7af05;
+}
+
+h2{
+  color: midnightblue;
 }

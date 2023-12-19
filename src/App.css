@@ -4,10 +4,10 @@ body{
 }
 
 .container {
-  width: 1000px;
+  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
-  background-color: antiquewhite;
 }
 
 .nav{
@@ -15,6 +15,11 @@ body{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.title{
+  font-weight: 900;
+  color: #073dcf;
 }
 
 .search{
