@@ -17,7 +17,6 @@ const NoteForm = ({ addNote }) => {
       addNote(newNote);
       setTitle('');
       setContent('');
-      console.log('Catatan Baru:', newNote);
     } else {
       alert('Judul dan isi catatan tidak boleh kosong!');
     }
