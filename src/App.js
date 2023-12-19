@@ -20,8 +20,12 @@ const App = () => {
     localStorage.setItem('archivedNotes', JSON.stringify(archivedNotes));
   }, [archivedNotes]);
 
+  // const addNote = (note) => {
+  //   setNotes([...notes, note]);
+  // };
+
   const addNote = (note) => {
-    setNotes([...notes, note]);
+    setNotes((prevNotes) => [...prevNotes, { ...note, id: String(Date.now()) }]);
   };
 
   const deleteNote = (id) => {
@@ -66,15 +70,28 @@ const App = () => {
     const addDummyNotesIfNeeded = () => {
       const storedNotes = JSON.parse(localStorage.getItem('notes'));
       const storedArchivedNotes = JSON.parse(localStorage.getItem('archivedNotes'));
+      const dummyNotesAdded = localStorage.getItem('dummyNotesAdded');
 
-      if (!storedNotes || !storedArchivedNotes) {
+      if ((!storedNotes || storedNotes.length === 0) && (!storedArchivedNotes || storedArchivedNotes.length === 0)) {
+      localStorage.removeItem('dummyNotesAdded');
+    }
+
+      if ((!storedNotes || storedNotes.length === 0) && (!storedArchivedNotes || storedArchivedNotes.length === 0) && !dummyNotesAdded) {
+        let nextId = 1; // Initialize the ID for dummy notes
+
         const dummyNotes = [
-          { id: '1', title: 'Catatan Dummy 1', content: 'Isi catatan dummy 1', date: 'Tanggal dummy 1' },
-          { id: '2', title: 'Catatan Dummy 2', content: 'Isi catatan dummy 2', date: 'Tanggal dummy 2' },
-          // ... tambahkan catatan dummy lainnya
+          { id: String(nextId++), title: 'Ayam Goreng', content: 'Ayam Goreng paling enak bagian dada dan paha.', date: 'Senin, 4 Desember 2023' },
+          { id: String(nextId++), title: 'Ayam Bakar Madu', content: 'Ayam bakar madu memiliki cita rasa yang unik dan sangat nikmat jika dimakan masih hangat.', date: 'Selasa, 5 Desember 2023' },
+          { id: String(nextId++), title: 'Sate Ayam Madura', content: 'Tesate satenya dekkk.', date: 'Rabu, 6 Desember 2023' },
+          { id: String(nextId++), title: 'Kambing Guling', content: 'Kasian kambingnya diguling-guling.', date: 'Kamis, 7 Desember 2023' },
+          { id: String(nextId++), title: 'Rendang', content: 'Cita rasa yang sungguh menggugah selera.', date: 'Jumat, 8 Desember 2023' },
         ];
+        
+        const filteredDummyNotes = dummyNotes.filter(dummyNote => !notes.some(note => note.id === dummyNote.id));
 
-        dummyNotes.forEach((dummyNote) => addNote(dummyNote));
+        setNotes(prevNotes => [...prevNotes, ...filteredDummyNotes]);
+        
+        localStorage.setItem('dummyNotesAdded', true);
       }
     };
 
@@ -83,23 +100,26 @@ const App = () => {
   }, []); 
 
   return (
-    <div>
-      <div>
-        <h1>Aplikasi Catatan</h1>
+    <div className="container">
+      <div className="nav">
+        <h1 className="title">CatApp</h1>
         <input
+          className="search"
           type="text"
           placeholder="Cari catatan berdasarkan judul"
           onChange={(e) => searchNotes(e.target.value)}
         />
       </div>
-      <NoteForm addNote={addNote} />
-      <NoteList
-        notes={searchQuery ? searchResults : notes || []}
-        archivedNotes={archivedNotes || []}
-        deleteNote={deleteNote}
-        archiveNote={archiveNote}
-        restoreNote={restoreNote}
-      />
+      <div>
+        <NoteForm addNote={addNote} />
+        <NoteList
+          notes={searchQuery ? searchResults : notes || []}
+          archivedNotes={archivedNotes || []}
+          deleteNote={deleteNote}
+          archiveNote={archiveNote}
+          restoreNote={restoreNote}
+        />
+      </div>
     </div>
   );
 };

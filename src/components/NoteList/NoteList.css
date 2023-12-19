@@ -1,0 +1,98 @@
+.container-note{
+  width: 100%;
+  background-color: aquamarine;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+ul{
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.note-list{
+  flex: 0 0 228px;
+  height: 250px;
+  background-color: aqua;
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.judul{
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.tanggal{
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.isi{
+  text-transform: initial;
+}
+
+.btn{
+  max-width: 196px;
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  bottom: 16px;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.btn-del {
+  width: 50%;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  padding: 5px;
+  background-color: #db6c6c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-del:hover {
+  background-color: #2980b9;
+}
+
+.btn-archive {
+  width: 50%;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  padding: 5px;
+  background-color: #db6c6c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-archive:hover {
+  background-color: #2980b9;
+}
+
+.btn-restore {
+  width: 50%;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  padding: 5px;
+  background-color: #db6c6c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-restore:hover {
+  background-color: #2980b9;
+}

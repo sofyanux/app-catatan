@@ -28,19 +28,19 @@ const NoteForm = ({ addNote }) => {
   };
 
   return (
-    <div>
-      <h2>Tambah Catatan Baru</h2>
-      <div>
+    <div className="form-container">
+      <h2 className="form-title">Tambah Catatan Baru</h2>
+      <div className="note-form">
         <label>
           Judul:
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input className="note-title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         </label>
         <label>
           Isi:
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} />
+          <textarea className="note-content" value={content} onChange={(e) => setContent(e.target.value)} />
         </label>
+        <button className="btn-add" onClick={handleAddNote}>Tambah Catatan</button>
       </div>
-      <button onClick={handleAddNote}>Tambah Catatan</button>
     </div>
   );
 };
